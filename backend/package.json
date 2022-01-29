@@ -1,0 +1,25 @@
+{
+  "name": "rural_development",
+  "version": "1.0.0",
+  "description": "A friendly user interface for village people wehere they can get to know about the govt schemes.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sudhanshu1309/rural-development-by-govt-schemes.git"
+  },
+  "author": "Sudhanshu Tripathi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sudhanshu1309/rural-development-by-govt-schemes/issues"
+  },
+  "homepage": "https://github.com/sudhanshu1309/rural-development-by-govt-schemes#readme",
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
