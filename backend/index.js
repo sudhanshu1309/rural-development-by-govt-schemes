@@ -7,6 +7,8 @@ const client = require("./database"); //Database connection
 
 //routes
 const authRoutes = require("./routes/auth");
+const dataRoutes = require("./routes/dataEntry");
+const queryRoutes = require("./routes/query");
 
 //port
 const port = process.env.PORT;
@@ -26,3 +28,5 @@ app.listen(port, () => {
 
 // routes
 app.use("/api", authRoutes);
+app.use("/api", dataRoutes);
+app.use("/api", queryRoutes);
