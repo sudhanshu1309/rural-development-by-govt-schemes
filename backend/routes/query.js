@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
 const { getDetails, getAadhar } = require("../controllers/query");
+const { isSignedIn } = require("../controllers/auth");
 
 //params
 router.param("aadhar", getAadhar);
@@ -14,6 +15,7 @@ router.get(
       .isLength({ min: 12, max: 12 })
       .withMessage("Invalid Aadhar no."),
   ],
+  isSignedIn,
   getDetails
 );
 

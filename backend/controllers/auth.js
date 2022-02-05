@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
 const client = require("../database");
 const jwt = require("jsonwebtoken");
+const expressJwt = require("express-jwt");
 require("dotenv").config();
 
 exports.signout = (req, res) => {
@@ -60,3 +61,10 @@ exports.signin = (req, res) => {
     }
   );
 };
+
+//protected routes
+exports.isSignedIn = expressJwt({
+  secret: process.env.SECRET,
+  algorithms: ["HS256"],
+  userProperty: "auth",
+});

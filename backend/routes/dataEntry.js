@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
+const { isSignedIn } = require("../controllers/auth");
 
 const { submitData } = require("../controllers/dataEntry");
 
@@ -12,6 +13,7 @@ router.post(
       .isLength({ min: 12, max: 12 })
       .withMessage("Invalid Aadhar no."),
   ],
+  isSignedIn,
   submitData
 );
 
