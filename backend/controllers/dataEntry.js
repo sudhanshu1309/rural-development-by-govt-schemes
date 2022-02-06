@@ -17,9 +17,10 @@ exports.submitData = (req, res) => {
     address,
     schemasEnrolled,
   } = req.body;
+  // console.log(req.body);
   if (!errors.isEmpty()) {
     return res.status(422).json({
-      message: errors.array()[0].msg,
+      error: errors.array()[0].msg,
     });
   }
   //saving in database
@@ -54,12 +55,12 @@ exports.submitData = (req, res) => {
       if (err) {
         console.log(err);
         return res.status(400).json({
-          message: "Unable to save the data",
+          error: "Unable to save the data",
         });
       }
       //   console.log("RESULT" + JSON.stringify(people.rows));
       return res.json({
-        message: "Saved successfully!",
+        error: "Saved successfully!",
       });
     }
   );

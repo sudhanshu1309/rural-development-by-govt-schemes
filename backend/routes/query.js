@@ -15,7 +15,15 @@ router.get(
       .isLength({ min: 12, max: 12 })
       .withMessage("Invalid Aadhar no."),
   ],
-  isSignedIn,
+  getDetails
+);
+router.get(
+  "/details/",
+  [
+    check("aadhar")
+      .isLength({ min: 12, max: 12 })
+      .withMessage("Invalid Aadhar no."),
+  ],
   getDetails
 );
 

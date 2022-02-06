@@ -6,7 +6,7 @@ exports.getDetails = (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({
-      message: "Invalid aadhar no.",
+      error: "Invalid aadhar no.",
     });
   }
   //   console.log(req.people);
@@ -18,9 +18,11 @@ exports.getAadhar = (req, res, next, aadhar) => {
     `SELECT * FROM people WHERE aadhar = $1`,
     [aadhar],
     (err, people) => {
-      if (err) {
+      // console.log(err);
+      // console.log(people.rows.length);
+      if (err || people.rows.length === 0) {
         return res.status(400).json({
-          message: "aadhar not found!",
+          error: "aadhar not found!",
         });
       }
       //   console.log(people.rows[0]);

@@ -13,7 +13,6 @@ router.post(
       .isLength({ min: 12, max: 12 })
       .withMessage("Invalid Aadhar no."),
   ],
-  isSignedIn,
   submitData
 );
 

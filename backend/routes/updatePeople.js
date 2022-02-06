@@ -8,6 +8,6 @@ const { isSignedIn } = require("../controllers/auth");
 router.param("aadhar", getAadhar);
 
 //update
-router.put("/update/:aadhar", isSignedIn, updateDetails);
+router.put("/update/:aadhar", updateDetails);
 
 module.exports = router;
