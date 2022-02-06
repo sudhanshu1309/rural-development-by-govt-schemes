@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./Submit.css";
-import { getAllSchema, savePeople } from "./apiCall";
 import { isAuthenticated } from "../DBALogin/apiCall";
 import { Link } from "react-router-dom";
+import { updatePeople } from "./apiCall";
+import { getAllSchema } from "../Submit/apiCall";
 
-const Submit = () => {
+const Update = ({ match }) => {
   const [values, setValues] = useState({
-    aadhar: "",
     name: "",
     dob: "",
     gender: "",
@@ -23,7 +22,6 @@ const Submit = () => {
   });
 
   const {
-    aadhar,
     name,
     dob,
     gender,
@@ -38,8 +36,6 @@ const Submit = () => {
     schemas,
     loading,
   } = values;
-
-  const [temp, setTemp] = useState([]);
 
   const { token } = isAuthenticated;
 
@@ -58,17 +54,13 @@ const Submit = () => {
   }, []);
 
   const handleChange = (name) => (event) => {
-    setValues({
-      ...values,
-      error: false,
-      [name]: event.target.value,
-    });
+    setValues({ ...values, error: false, [name]: event.target.value });
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    savePeople(token, values)
+    updatePeople(token, match.params.aadhar, values)
       .then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error });
@@ -135,16 +127,11 @@ const Submit = () => {
           className="container col-12 text-white rounded"
           style={{ marginLeft: "40%" }}
         >
-          <h1 className="py-2">Registration</h1>
+          <h1 className="py-2">Update</h1>
           {/* input values */}
-          <div className="py-1">
-            <input
-              type="text"
-              value={aadhar}
-              placeholder="Aadhar No"
-              onChange={handleChange("aadhar")}
-              required
-            />
+          <div className="py-1 text-info">
+            <span>Aadhar No:&nbsp;</span>
+            <span>{match.params.aadhar}</span>
           </div>
           <div className="py-1">
             <input
@@ -156,7 +143,7 @@ const Submit = () => {
             />
           </div>
           <div className="py-1">
-            <span>DOB&nbsp;&nbsp;</span>
+            <span>DOB:&nbsp;&nbsp;</span>
             <input
               type="date"
               value={dob}
@@ -239,12 +226,8 @@ const Submit = () => {
           </div>
           {schemas.map((scheme, index) => {
             return (
-              <div key={index} className="text-warning pt-1">
-                <input
-                  type="checkbox"
-                  value={scheme.id}
-                  onClick={handleChange("schemasEnrolled")}
-                />
+              <div key={index} className="text-white pt-1">
+                <input type="checkbox" />
                 <label>&nbsp;{scheme.id}</label>
                 <label> &nbsp;{scheme.name}</label>
               </div>
@@ -257,7 +240,7 @@ const Submit = () => {
                 className="row mb-3 btn-success rounded"
                 style={{ marginLeft: "7%" }}
                 type="submit"
-                value="Submit"
+                value="Update"
                 onClick={onSubmit}
               />
             </span>
@@ -277,4 +260,4 @@ const Submit = () => {
   );
 };
 
-export default Submit;
+export default Update;

@@ -50,7 +50,7 @@ exports.updateDetails = (req, res) => {
       if (err) {
         console.log(err);
         return res.status(400).json({
-          message: "Unable to save the data",
+          error: "Unable to save the data",
         });
       }
       // console.log("RESULT" + JSON.stringify(people));

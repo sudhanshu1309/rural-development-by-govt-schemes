@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "../DBALogin/Home.css";
 import { makeQuery } from "./apiCall";
 
@@ -68,6 +68,9 @@ const Query = () => {
   const queryForm = () => {
     return (
       <div>
+        <div className="btn btn-warning m-4">
+          <Link to="/admin/home">Home</Link>
+        </div>
         <form
           className="container col-12 text-white pt-4 rounded mt-5"
           style={{ marginLeft: "40%" }}
