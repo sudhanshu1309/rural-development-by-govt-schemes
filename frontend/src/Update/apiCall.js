@@ -1,12 +1,11 @@
 import API from "../backend";
 
-export const updatePeople = (token, aadhar, people) => {
-  return fetch(`${API}/update/${aadhar}`, {
-    method: "POST",
+export const updatePeople = (id, people) => {
+  return fetch(`${API}/update/${id}`, {
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(people),
   })

@@ -3,6 +3,7 @@ const client = require("../database");
 //update details
 exports.updateDetails = (req, res) => {
   const {
+    aadhar,
     name,
     dob,
     gender,
@@ -15,8 +16,9 @@ exports.updateDetails = (req, res) => {
     schemasEnrolled,
   } = req.body;
 
-  const { aadhar } = req.params;
-  //   console.log(aadhar);
+  const schemes = `{${schemasEnrolled}}`;
+  // console.log(aadhar);
+  // console.log(req.body);
 
   //saving in database
   client.query(
@@ -44,18 +46,18 @@ exports.updateDetails = (req, res) => {
       mobNo,
       email,
       address,
-      schemasEnrolled,
+      schemes,
     ],
     (err, people) => {
       if (err) {
         console.log(err);
         return res.status(400).json({
-          error: "Unable to save the data",
+          error: "Unable to update the data",
         });
       }
       // console.log("RESULT" + JSON.stringify(people));
       return res.json({
-        message: "Saved successfully!",
+        error: "Saved successfully!",
       });
     }
   );

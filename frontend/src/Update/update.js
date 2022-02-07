@@ -6,6 +6,7 @@ import { getAllSchema } from "../Submit/apiCall";
 
 const Update = ({ match }) => {
   const [values, setValues] = useState({
+    aadhar: match.params.id,
     name: "",
     dob: "",
     gender: "",
@@ -22,6 +23,7 @@ const Update = ({ match }) => {
   });
 
   const {
+    aadhar,
     name,
     dob,
     gender,
@@ -37,7 +39,8 @@ const Update = ({ match }) => {
     loading,
   } = values;
 
-  const { token } = isAuthenticated;
+
+  // console.log(aadhar);
 
   const preload = () => {
     getAllSchema().then((data) => {
@@ -54,20 +57,26 @@ const Update = ({ match }) => {
   }, []);
 
   const handleChange = (name) => (event) => {
-    setValues({ ...values, error: false, [name]: event.target.value });
+    setValues({
+      ...values,
+      error: false,
+      loading: false,
+      [name]: event.target.value,
+    });
   };
+
+  console.log(match.params.id);
 
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    updatePeople(token, match.params.aadhar, values)
+    updatePeople(match.params.id, values)
       .then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error });
         } else {
           setValues({
             ...values,
-            aadhar: "",
             name: "",
             dob: "",
             gender: "",
@@ -131,7 +140,7 @@ const Update = ({ match }) => {
           {/* input values */}
           <div className="py-1 text-info">
             <span>Aadhar No:&nbsp;</span>
-            <span>{match.params.aadhar}</span>
+            <span>{match.params.id}</span>
           </div>
           <div className="py-1">
             <input
@@ -227,7 +236,11 @@ const Update = ({ match }) => {
           {schemas.map((scheme, index) => {
             return (
               <div key={index} className="text-white pt-1">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  value={scheme.id}
+                  onChange={handleChange("schemasEnrolled")}
+                />
                 <label>&nbsp;{scheme.id}</label>
                 <label> &nbsp;{scheme.name}</label>
               </div>

@@ -97,3 +97,31 @@ INSERT INTO govt_schemes (
 
 
 DROP TABLE govt_schemes;
+
+
+-- //////////////////////
+INSERT INTO people (
+    aadhar,
+    name,
+    dob,
+    gender,
+    spouse_name,
+    no_of_children,
+    annual_income,
+    mob_no,
+    email,
+    address,
+    schemes_enrolled 
+) VALUES (
+    123456789000,
+    'Test',
+    '2000-01-01',
+    'M',
+    'Test Wife',
+    2,
+    100000,
+    9876543210,
+    'test@gmail.com',
+    'False Apartment',
+    ARRAY[101,102,103]
+)

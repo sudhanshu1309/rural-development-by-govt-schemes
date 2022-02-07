@@ -23,6 +23,9 @@ exports.submitData = (req, res) => {
       error: errors.array()[0].msg,
     });
   }
+
+  const schemes = `{${schemasEnrolled}}`;
+  // console.log("SCHEMAS:  "+ schemes);
   //saving in database
   client.query(
     `INSERT INTO people (
@@ -49,7 +52,7 @@ exports.submitData = (req, res) => {
       mobNo,
       email,
       address,
-      schemasEnrolled,
+      schemes,
     ],
     (err, people) => {
       if (err) {

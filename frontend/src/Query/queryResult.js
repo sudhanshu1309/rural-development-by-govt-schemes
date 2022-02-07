@@ -30,7 +30,7 @@ const QueryResult = ({ match }) => {
       <div className="btn btn-warning m-4">
         <Link to="/admin/home">Home</Link>
       </div>
-      <div className="container text-white fs-4" style={{ marginLeft: "40%" }}>
+      <div className="container text-dark fs-4" style={{ marginLeft: "40%" }}>
         <h1 className="">Query Result</h1>
         <div className="row">
           <span>

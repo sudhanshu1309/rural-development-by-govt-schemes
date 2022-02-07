@@ -16,7 +16,7 @@ const Routes = () => {
         <Route exact path="/admin/details" component={Query} />
         <Route exact path="/admin/details/:aadhar" component={QueryResult} />
         <Route exact path="/admin/home" component={Routing} />
-        <Route exact path="/admin/update/:aadhar" component={Update} />
+        <Route exact path="/admin/update/:id" component={Update} />
         <Route exact path="/admin/update" component={UpdateDetails} />
       </Switch>
     </BrowserRouter>

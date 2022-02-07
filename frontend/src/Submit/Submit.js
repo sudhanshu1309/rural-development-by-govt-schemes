@@ -61,6 +61,7 @@ const Submit = () => {
     setValues({
       ...values,
       error: false,
+      loading: false,
       [name]: event.target.value,
     });
   };

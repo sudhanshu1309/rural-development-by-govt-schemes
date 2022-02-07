@@ -31,3 +31,19 @@ exports.getAadhar = (req, res, next, aadhar) => {
     }
   );
 };
+
+exports.getId = (req, res, next, id) => {
+  client.query(
+    `SELECT * FROM people WHERE aadhar = $1`,
+    [id],
+    (err, people) => {
+      if (err || people.rows.length === 0) {
+        return res.status(400).json({
+          error: "aadhar not found!",
+        });
+      }
+
+      next();
+    }
+  );
+};
